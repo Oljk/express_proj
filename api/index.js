@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
-const port = 3000
+
+require('dotenv').config({ encoding: 'latin1' });
+
+const port = process.env.PORT;
+
 function writeLog (err, req, res, next) {
     console.log('index.js mes: ' + err.message)
     next(err);
@@ -15,8 +19,9 @@ function errorHandler (err, req, res, next) {
 }
 
 function allErrorsHandle (err, req, res, next) {
-    res.status(501)
+    res.status(501);
     res.send('unknown error, please contact admin');
+    next(err);
 }
 
 app.get('/', (req, res) => {
