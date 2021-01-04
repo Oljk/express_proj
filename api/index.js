@@ -1,9 +1,6 @@
 const express = require('express')
 const app = express()
-
-require('dotenv').config({ encoding: 'latin1' });
-
-const port = process.env.PORT;
+const appConf = require('./myconf.js')
 
 function writeLog (err, req, res, next) {
     console.log('index.js mes: ' + err.message)
@@ -32,8 +29,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.listen(appConf.Port, () => {
+    console.log(`Example app listening at http://${appConf.Host}:${appConf.Port}`)
 })
 
 app.use(writeLog); // сначала в лог
