@@ -1,17 +1,24 @@
 require('dotenv').config({ encoding: 'latin1' });
 class MyConf {
-    port = process.env.PORT;
-    host = process.env.HOST;
+   static port = process.env.PORT;
+    static host = process.env.HOST;
 
-    get Port() {
+    static get Port() {
         //console.log(this.port);
         return this.port;
     }
 
-    get Host() {
+    static get Host() {
       //  console.log(process.env.HOST);
         return this.host;
     }
+
+    static getVar(varName, defaultvalue = '') {
+        if (varName == null || varName.empty) {
+            varName = defaultvalue;
+        }
+        return process.env[varName];
+    }
 }
 
-module.exports = new MyConf();
+module.exports = MyConf;

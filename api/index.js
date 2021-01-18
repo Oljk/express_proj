@@ -22,6 +22,7 @@ function allErrorsHandle (err, req, res, next) {
 }
 
 app.get('/', (req, res) => {
+    appConf.getVar('PorT1');
     const ok = Boolean(Math.round(Math.random()));
     if (!ok) {
         throw  new Error('Random Math error at get / '); // ошибка будет валится рандомно
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.listen(appConf.Port, () => {
+app.listen(appConf.getVar('Port'), () => {
     console.log(`Example app listening at http://${appConf.Host}:${appConf.Port}`)
 })
 
