@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const appConf = require('./myconf.js')
 
+const auth = require('./routes/auth')
+const posts = require('./routes/posts')
+
 function writeLog (err, req, res, next) {
     console.log('index.js mes: ' + err.message)
     next(err);
@@ -29,6 +32,9 @@ app.get('/', (req, res) => {
     }
     res.send('Hello World!')
 })
+
+app.use(auth);
+app.use(posts);
 
 app.listen(appConf.getVar('Port'), () => {
     console.log(`Example app listening at http://${appConf.Host}:${appConf.Port}`)
